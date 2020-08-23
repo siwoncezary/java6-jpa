@@ -1,12 +1,10 @@
 package entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@NamedQuery(name="count", query = "select count(a) from Alcohol a")
 public class Alcohol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //powoduje generowanie klucza przez autoincrement

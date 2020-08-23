@@ -1,4 +1,5 @@
 import entity.Alcohol;
+import org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,6 +21,8 @@ public class EntityDemo {
         System.out.println("4. Usuń encję");
         System.out.println("5. Odłączanie encji");
         System.out.println("6. Scalanie encji");
+        System.out.println("7. Znajdź encje wg nazwy");
+        System.out.println("8. Liczba encji");
         System.out.println("0. Wyjście");
         while (!scanner.hasNextInt()) {
             System.out.println("Wpisz numer polecenia!!!");
@@ -112,6 +115,22 @@ public class EntityDemo {
         System.out.println(newEntity);
     }
 
+    static void findByName(){
+        System.out.println("Podaj szukaną nazwę");
+        String nameTemplate = scanner.nextLine();
+        List<Alcohol> list = em.createQuery("select a from Alcohol a where a.name like :template", Alcohol.class)
+                .setParameter("template", nameTemplate)
+                .getResultList();
+        for(Alcohol a: list){
+            System.out.println(a);
+        }
+    }
+
+    static void countEntities(){
+        long count = em.createNamedQuery("count", Long.class).getSingleResult();
+        System.out.println("Liczba encji w bazie: " + count);
+    }
+
     public static void main(String[] args) {
         while (true) {
             switch (menu()) {
@@ -132,6 +151,12 @@ public class EntityDemo {
                     break;
                 case 6:
                     mergeEntity();
+                    break;
+                case 7:
+                    findByName();
+                    break;
+                case 8:
+                    countEntities();
                     break;
                 case 0:
                     return;
