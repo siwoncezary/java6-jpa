@@ -1,5 +1,6 @@
 import com.mysql.cj.xdevapi.AddResult;
 import entity.Address;
+import entity.Car;
 import entity.Person;
 
 import javax.persistence.EntityManager;
@@ -34,7 +35,22 @@ public class OneToOneDemo {
         Address address = new Address(street, city, zipCode);
         person.setAddress(address);
 
+        System.out.println("Podaj dane samochodu");
+        System.out.println("nr rejestracyjny:");
+        String registerNumber = scanner.nextLine();
+        System.out.println("model:");
+        String model = scanner.nextLine();
+
+        Car car = new Car();
+        car.setModel(model);
+        car.setRegisterNumber(registerNumber);
+
         em.getTransaction().begin();
+        //utrwalamy encję związku
+        em.persist(car);
+        //dodajemy encję utrwaloną do encji związku
+        person.setCar(car);
+        //utrwalamy encję nadrzędną
         em.persist(person);
         em.getTransaction().commit();
         em.createQuery("from Person", Person.class)

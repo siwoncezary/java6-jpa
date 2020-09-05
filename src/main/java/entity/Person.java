@@ -15,6 +15,9 @@ public class Person {
     @Embedded
     private Address address;
 
+    @OneToOne
+    private Car car;
+
     public String getEmail() {
         return email;
     }
@@ -39,6 +42,14 @@ public class Person {
         this.address = address;
     }
 
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -46,6 +57,7 @@ public class Person {
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
                 ", address=" + address +
+                ", car=" + car +
                 '}';
     }
 }
