@@ -1,6 +1,8 @@
 package entity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Person {
@@ -18,6 +20,11 @@ public class Person {
     //ta kaskada powoduje automatyczne usunięcie samochodu, gdy zostanie usunięta właściciel
     @OneToOne(cascade = CascadeType.REMOVE)
     private Car car;
+
+    //Dodanie drugiego kierunku do zwiazku Person-Order
+    //Nie musimy teraz robić zapytania listującego zamówienia tego użytkownika
+    @OneToMany(mappedBy = "person")
+    private Set<Order> orders = new HashSet<>();
 
     public String getEmail() {
         return email;
@@ -51,6 +58,14 @@ public class Person {
         this.car = car;
     }
 
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -59,6 +74,7 @@ public class Person {
                 ", name='" + name + '\'' +
                 ", address=" + address +
                 ", car=" + car +
+                ", orders=" + orders +
                 '}';
     }
 }

@@ -54,7 +54,7 @@ public class Order {
                 "id=" + id +
                 ", sum=" + sum +
                 ", number='" + number + '\'' +
-                ", person=" + person +
+                ", person=" + person.getName() +
                 '}';
     }
 }

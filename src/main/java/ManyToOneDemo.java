@@ -34,14 +34,11 @@ public class ManyToOneDemo {
         //utrwalamy zamówienie
         em.persist(order);
         em.getTransaction().commit();
-        em.createQuery("from Order", Order.class)
+        //Zapytanie wyświetlające zamówienia danej osoby
+        em.createQuery("select o from Order o where o.person = :person", Order.class)
+                .setParameter("person", person)
                 .getResultList()
                 .forEach(System.out::println);
         em.close();
-
-        em.createQuery("select o from Order o where o.person = :person", Order.class)
-                .setParameter("person", id)
-                .getResultList()
-                .forEach(System.out::println);
     }
 }
