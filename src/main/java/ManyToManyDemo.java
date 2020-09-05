@@ -6,6 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class ManyToManyDemo {
     static EntityManagerFactory factory =
