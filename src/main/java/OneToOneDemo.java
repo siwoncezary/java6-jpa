@@ -46,11 +46,11 @@ public class OneToOneDemo {
         car.setRegisterNumber(registerNumber);
 
         em.getTransaction().begin();
-        //utrwalamy encję związku
-        em.persist(car);
-        //dodajemy encję utrwaloną do encji związku
-        person.setCar(car);
         //utrwalamy encję nadrzędną
+        em.persist(car);
+        //dodajemy encję nadrzędną do nieutrwalonej encji podrzędnej
+        person.setCar(car);
+        //utrwalamy encję podrzędną
         em.persist(person);
         em.getTransaction().commit();
         em.createQuery("from Person", Person.class)
