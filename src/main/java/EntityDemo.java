@@ -1,6 +1,4 @@
 import entity.Alcohol;
-import org.omg.CosNaming.NamingContextPackage.AlreadyBoundHelper;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
