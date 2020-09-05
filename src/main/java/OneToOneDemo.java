@@ -53,6 +53,7 @@ public class OneToOneDemo {
         //utrwalamy encję podrzędną
         em.persist(person);
         em.getTransaction().commit();
+
         em.createQuery("from Person", Person.class)
                 .getResultList().forEach(System.out::println);
         em.close();

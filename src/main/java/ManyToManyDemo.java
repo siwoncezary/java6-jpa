@@ -34,5 +34,8 @@ public class ManyToManyDemo {
         em.createQuery("from Project", Project.class)
                 .getResultList()
                 .forEach(System.out::println);
+
+        Person person = em.find(Person.class, 1L);
+        System.out.println(person);
     }
 }

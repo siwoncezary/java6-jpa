@@ -44,7 +44,6 @@ public class Project {
         return "Project{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", members=" + members +
                 '}';
     }
 }

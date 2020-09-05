@@ -23,8 +23,13 @@ public class Person {
 
     //Dodanie drugiego kierunku do zwiazku Person-Order
     //Nie musimy teraz robić zapytania listującego zamówienia tego użytkownika
-    @OneToMany(mappedBy = "person")
+    //pobieranie zamówień wykonywane jest od razu przy pobieraniu z bazy encji person
+    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
     private Set<Order> orders = new HashSet<>();
+
+    //pobieranie nastapi gdy zostanie wywołana metoda getMembers()
+    @ManyToMany(mappedBy = "members", fetch = FetchType.LAZY)
+    private Set<Project> projects = new HashSet<>();
 
     public String getEmail() {
         return email;
@@ -75,6 +80,7 @@ public class Person {
                 ", address=" + address +
                 ", car=" + car +
                 ", orders=" + orders +
+                ", projects=" + projects +
                 '}';
     }
 }
