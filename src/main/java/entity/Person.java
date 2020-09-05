@@ -15,7 +15,8 @@ public class Person {
     @Embedded
     private Address address;
 
-    @OneToOne
+    //ta kaskada powoduje automatyczne usunięcie samochodu, gdy zostanie usunięta właściciel
+    @OneToOne(cascade = CascadeType.REMOVE)
     private Car car;
 
     public String getEmail() {
